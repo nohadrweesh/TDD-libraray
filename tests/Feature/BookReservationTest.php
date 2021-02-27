@@ -21,6 +21,17 @@ class BookReservationTest extends TestCase
         $this->assertCount(1,Book::all());
     }
 
+     /** @test */
+     public function a_title_is_required(){
+        //$this->withoutExceptionHandling(); to view error itself
+        $response=$this->post('/api/books',[
+            'title'=>'',
+            'author'=>'Noha Drweesh'
+        ]);
+        $response->assertSessionHasErrors('author');
+
+    }
+
     /** @test */
     public function a_author_is_required(){
         //$this->withoutExceptionHandling(); to view error itself
