@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Author;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
@@ -12,6 +13,12 @@ class Book extends Model
 
     public function path(){
         return 'books/'.$this->id;
+    }
+
+    public function  setAuthorIdAttribute($author){
+        $this->attributes['author_id']=Author::firstOrCreate([
+            'name'=>$author
+        ])->id;
     }
 
 }
