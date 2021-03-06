@@ -28,7 +28,7 @@ class BookReservationTest extends TestCase
             'title'=>'',
             'author'=>'Noha Drweesh'
         ]);
-        $response->assertSessionHasErrors('author');
+        $response->assertSessionHasErrors('title');
 
     }
 
