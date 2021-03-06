@@ -12,7 +12,7 @@ class BookReservationTest extends TestCase
     /** @test */
     public function a_book_can_be_added_to_the_library(){
 
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
         $response=$this->post('/api/books',[
             'title'=>'New Book',
             'author'=>'Noha Drweesh'
@@ -46,7 +46,7 @@ class BookReservationTest extends TestCase
     /** @test */
     public function a_book_can_be_updated(){
 
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
         $this->post('/api/books',[
             'title'=>'New Book',
             'author'=>'Noha Drweesh'
@@ -63,7 +63,7 @@ class BookReservationTest extends TestCase
 
     /** @test */
     public function a_book_can_be_deleted(){
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
         $this->post('/api/books',[
             'title'=>'New Book',
             'author'=>'Noha Drweesh'
