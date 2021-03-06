@@ -26,4 +26,9 @@ class BooksController extends Controller
         $book->update($data);
 
     }
+
+    public function destroy(Book $book){
+        $book->delete();
+
+    }
 }
