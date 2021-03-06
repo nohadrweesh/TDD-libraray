@@ -17,8 +17,9 @@ class BookReservationTest extends TestCase
             'title'=>'New Book',
             'author'=>'Noha Drweesh'
         ]);
-        $response->assertOk();
+        //$response->assertOk();
         $this->assertCount(1,Book::all());
+        $response->assertRedirect(Book::first()->path());
     }
 
      /** @test */
@@ -52,13 +53,14 @@ class BookReservationTest extends TestCase
             'author'=>'Noha Drweesh'
         ]);
         $book=Book::first();
-        $this->patch('/api/books/'.$book->id,[
+        $response=$this->patch('/api/books/'.$book->id,[
             'title'=>'New Book updated',
             'author'=>'Noha Darweesh'
         ]);
 
         $this->assertEquals('New Book updated',Book::first()->title);
         $this->assertEquals('Noha Darweesh',Book::first()->author);
+        $response->assertRedirect($book->path());
     }
 
     /** @test */
@@ -72,9 +74,9 @@ class BookReservationTest extends TestCase
         $this->assertCount(1,Book::all());
         $book=Book::first();
 
-        $this->delete('/api/books/'.$book->id);
+        $response=$this->delete('/api/books/'.$book->id);
         $this->assertCount(0,Book::all());
 
-
+        $response->assertRedirect('/books');
     }
 }

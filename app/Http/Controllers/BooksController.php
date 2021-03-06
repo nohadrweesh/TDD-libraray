@@ -14,7 +14,8 @@ class BooksController extends Controller
             'title'=>'required|string',
             'author'=>'required|string'
         ]);
-        Book::create($data);
+        $book=Book::create($data);
+        return redirect($book->path());
 
     }
 
@@ -24,11 +25,13 @@ class BooksController extends Controller
             'author'=>'required|string'
         ]);
         $book->update($data);
+        return redirect($book->path());
 
     }
 
     public function destroy(Book $book){
         $book->delete();
+        return redirect('/books');
 
     }
 }
